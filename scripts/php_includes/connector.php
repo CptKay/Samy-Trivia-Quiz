@@ -1,17 +1,33 @@
 <?php
+
+
+
 $dbHost = getEnv('DB_HOST');
 $dbName = getEnv('DB_NAME');
 $dbUser = getEnv('DB_USER');
 $dbPassword = getEnv('DB_PASSWORD');
 
+$dbConn = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
+
 try {
-  $dbConn = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
+  // $dbConn = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
   // set the PDO error mode to exception
   $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   echo "Connected successfully";
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
+
+function fetchQuestionById($id, $dbConn) {
+
+
+  $sqlQuery=$dbConn->query("SELECT * FROM `questions` WHERE `id` = $id");
+    $row = $sqlQuery->fetch(PDO::FETCH_ASSOC);
+
+   // print_r($row);
+
+  return $row;
+};
 
 
 // Aliases

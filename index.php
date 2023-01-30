@@ -126,14 +126,65 @@ include "./scripts/php_includes/connector.php";
 <!-- Begin page content -->
 <main class="flex-shrink-0">
   <div class="container">
-    <h1 class="mt-5">Sticky footer with fixed navbar</h1>
-    <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code class="small">padding-top: 60px;</code> on the <code class="small">main &gt; .container</code>.</p>
-    <p>Back to <a href="/docs/5.2/examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
+  <form action="" method="post">
+
+  <?php
+
+    
+$id = 801;
+
+$question = fetchQuestionById($id, $dbConn);
+    // Frage auslesen
+    
+    ?> 
+  
+    <h1 class="mt-5">Trivia Quiz</h1>
+    <p class="lead">Category: <?php echo $question["topic"]
+?> </p>
+    <p><h6> Question: <?php echo $question["question_text"]
+?> </h6></p>
+
+<p><h7>Your answer:</h7></p>
+<div class="form-check form-check-inline">
+  
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="answer-1" value="answer-1">
+  <label class="form-check-label" for="answer-1"><?php echo $question["answer-1"]
+?></label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="answer-2" value="answer-2">
+  <label class="form-check-label" for="answer-2"><?php echo $question["answer-2"]
+?></label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="answer-3" value="answer-3">
+  <label class="form-check-label" for="answer-3"><?php echo $question["answer-3"]
+?></label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="answer-4" value="answer-4">
+  <label class="form-check-label" for="answer-4"><?php echo $question["answer-4"]
+?></label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="answer-5" value="answer-5">
+  <label class="form-check-label" for="answer-5"><?php echo $question["answer-5"]
+?></label>
+</div>
+
+</form>
+<input class="btn btn-info" type="submit" value="Submit">           
+<a class="btn btn-info btn-sm" href="javascript:history.back()" role="button">Back</a>
+
   </div>
+
+  
 </main>
 
 <footer class="footer mt-auto py-3 bg-light">
   <div class="container">
+
+  
     <span class="text-muted">Place sticky footer content here.</span>
   </div>
 </footer>
