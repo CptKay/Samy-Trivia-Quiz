@@ -18,8 +18,9 @@ try {
   echo "Connection failed: " . $e->getMessage();
 }
 
-function fetchQuestionById($id, $dbConn) {
 
+
+function fetchQuestionById($id, $dbConn) {
 
   $sqlQuery=$dbConn->query("SELECT * FROM `questions` WHERE `id` = $id");
     $row = $sqlQuery->fetch(PDO::FETCH_ASSOC);
@@ -28,6 +29,18 @@ function fetchQuestionById($id, $dbConn) {
 
   return $row;
 };
+
+function fetchQuestionIdSeq($topic, $questionNum, $dbConn) {
+  $query = "SELECT `id` FROM `questions` WHERE `topic` ORDER BY RAND() LIMIT $questionNum";
+  $sqlQuery=$dbConn->query($query);
+  $row = $sqlQuery->fetchAll(PDO::FETCH_COLUMN, 0);
+
+  return $row;
+
+};
+
+
+
 
 
 // Aliases

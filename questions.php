@@ -85,19 +85,45 @@
     
     <!-- Custom styles for this template -->
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
-    
   </head>
   <body class="d-flex flex-column h-100 bg-info">
 
-    
+    <?php
+    echo "Hello, we are starting to work with Databases and PHP PDO!"; 
+?>
 
 
     
 <header>
+<?php 
+
+
+if (isset($quiz["questionIdSequence"])) {
+  $questionCount = $quiz["questionNum"];
+  $id = $quiz["questionIdSequence"][$currentQuestionIndex];
+}
+
+
+/* $i= intval($_POST["questLastInd"])+1;
+$id = $quiz["questionIdSequence"]["$i"]; */
+
+$question = fetchQuestionById($id, $dbConn);
+
+
+
+
+
+
+// $question = fetchQuestionById($id, $dbConn);
+
+
+    // Frage auslesen
+    ?>
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-    <h5 class="mt-0 text-light">Trivia Quiz</h5>
+      <a class="navbar-brand" href="index.php"><h5 class="mt-0">Trivia Quiz</h5></a><h6 class="text-light text-end">Category: <?php echo $question["topic"]
+?> </h6>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -122,41 +148,27 @@
   </nav>
 </header>
 
-<?php  $id = 802;
 
-
-
-// $question = fetchQuestionById($id, $dbConn);
-
-
-    // Frage auslesen
-    ?>
 
 <!-- Begin page content -->
 
 
 <main class="flex-shrink-0">
 
-  <div class="">
+  <div class="container-fluid">
+    <div class="row">
 
-  <h1 class="mt-5">Trivia Quiz</h1>
-    <!-- <p class="lead">Category: <?php // echo $question["topic"]
-?> </p>
-    <p><h6> Question: <?php // echo $question["question_text"]
-?> </h6></p>
+  
+    <p class="lead"></p>
+    <p><h6> Question <?php echo ($currentQuestionIndex +1)
+?> of <?php echo $quiz["questionNum"];?> : <?php echo $question["question_text"]; ?> </h6></p>
 
-<p><h7>Your answer:</h7></p> -->
+<p><h7>Your answer:</h7></p>
+    </div>
 
-  <form id="quiz" action="questions.php" method="post">
+  <form action="" method="post">
 
-  <select class="form-select" aria-label="Select category" name="topic">
-  <option selected>Select category</option>
-  <option value="geography">Geography</option>
-  <option value="music">Two</option>
-  <option value="ch-norris">Three</option>
-</select>
-
-  <?php /*
+  <?php
 
 $correct = $question["correct"];
 
@@ -183,24 +195,26 @@ $correct = $question["correct"];
     
 
     
-   */ ?> 
+    ?> 
   
     
-<!-- Anzahl Fragen-->
-<div>
-<label style="margin-top:20px;" for="questionNum" class="form-label"> Number of questions</label>
-<input style="width:100px;" type="number" class="form-control" id="questionNum" name="questionNum" min="5" max="40" value="10">
 
-<input type="hidden" id="questLastInd" name="questLastInd" value="-1">
+
+</div>
+
+<div class="hidden">
+
+<input type="hidden" class="form-control" id="questionNum" name="questionNum" value="15">
+
+<input type="hidden" id="questLastInd" name="questLastInd" value="">
 <input type="hidden" id="indexStep" name="indexStep" value="1">
 </div>
-</div>
 
-<input class="btn btn-info" type="submit" value="Start">
+<input class="btn btn-info" type="submit" value="Submit">           
+<a class="btn btn-info btn-sm" href="javascript:history.back()" role="button">Back</a>
 
 </form>
-           
-<a class="btn btn-info btn-sm" href="javascript:history.back()" role="button">Back</a>
+
 
   </div>
 
