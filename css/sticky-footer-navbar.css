@@ -7,5 +7,11 @@ main > .container {
 } 
 
 .body {
-  background-color: 007fff;;
+  background-color: 007fff;
+}
+
+.img-fluid {
+
+  max-width: 10%;
+
 }

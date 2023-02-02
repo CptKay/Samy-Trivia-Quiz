@@ -98,39 +98,11 @@
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
     <h5 class="mt-0 text-light">Trivia Quiz</h5>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
       </div>
     </div>
   </nav>
 </header>
-
-<?php  $id = 802;
-
-
-
-// $question = fetchQuestionById($id, $dbConn);
-
-
-    // Frage auslesen
-    ?>
 
 <!-- Begin page content -->
 
@@ -140,14 +112,8 @@
   <div class="">
 
   <h1 class="mt-5">Trivia Quiz</h1>
-    <!-- <p class="lead">Category: <?php // echo $question["topic"]
-?> </p>
-    <p><h6> Question: <?php // echo $question["question_text"]
-?> </h6></p>
 
-<p><h7>Your answer:</h7></p> -->
-
-  <form id="quiz" action="questions.php" method="post">
+  <form id="quiz" action="questions.php" method="post"  class="md">
 
   <select class="form-select" aria-label="Select category" name="topic">
   <option selected>Select category</option>
@@ -165,36 +131,6 @@
   <option value="ch-norris">Chuck norris</option>
   <option value="d-n-d">Dungeons and Dragons</option>  
 </select>
-
-  <?php /*
-
-$correct = $question["correct"];
-
-  for ($a = 1; $a <= 5; $a++) {
-
-    $answerColName = "answer-" . $a;
-
-
-    
-
-    if(isset($question[$answerColName])&&$question[$answerColName] !== ''){
-      $answerText = $question[$answerColName];
-    if ($correct === $answerColName) $value = 1;
-    else $value = 0;
-
-    echo "<div class='form-check form-check-inline'>
-  
-    <input class='form-check-input' type='radio' name='inlineRadioOptions' id= '$answerColName' value='$value'>
-    <label class='form-check-label' for='answer-1'>$answerText</label>
-  </div>";
-  }
-};
-
-    
-
-    
-   */ ?> 
-  
     
 <!-- Anzahl Fragen-->
 <div>
@@ -209,8 +145,6 @@ $correct = $question["correct"];
 <input class="btn btn-info" type="submit" value="Start">
 
 </form>
-           
-<a class="btn btn-info btn-sm" href="javascript:history.back()" role="button">Back</a>
 
   </div>
 
@@ -220,14 +154,11 @@ $correct = $question["correct"];
 <footer class="footer mt-auto py-3 bg-light">
   <div class="container">
 
-  
-    <span class="text-muted">Place sticky footer content here.</span>
+    <span class="text-muted">Trivia Quiz</span>
   </div>
 </footer>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-      
+  
   </body>
 </html>

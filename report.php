@@ -1,7 +1,7 @@
 <?php
    include "./scripts/php_includes/data-collector.php";
 ?>
-!doctype html>
+<!doctype html>
 <html lang="en" class="h-100">
   <head>
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>Sticky Footer Navbar Template · Bootstrap v5.2</title>
+    <title>Trivia Quiz - Results</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sticky-footer-navbar/">
 
@@ -20,12 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
+
 <meta name="theme-color" content="#712cf9">
 
 
@@ -79,12 +74,19 @@
         text-align: center;
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
-      }
+      /* }
+
+      .img-fluid {
+
+max-width: 10%;
+
+*/
+} 
     </style>
 
     
     <!-- Custom styles for this template -->
-    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="/css/sticky-footer-navbar.css" rel="stylesheet">
     
   </head>
   <body class="d-flex flex-column h-100 bg-info">
@@ -97,32 +99,14 @@
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-    <h5 class="mt-0 text-light">Report</h5>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+    <a class="navbar-brand" href="index.php"><h5 class="mt-0 text-light">Restart Trivia Quiz</h5></a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
       </div>
     </div>
   </nav>
 </header>
 
-<?php  $id = 802;
+<?php
 
 
 $totalPoints = 0;
@@ -138,12 +122,6 @@ foreach ($_SESSION as $name => $value) {
 
 $maxPoints = $_SESSION["quiz"]["questionNum"];
 
-
-
-// $question = fetchQuestionById($id, $dbConn);
-
-
-    // Frage auslesen
     ?>
 
 <!-- Begin page content -->
@@ -151,19 +129,35 @@ $maxPoints = $_SESSION["quiz"]["questionNum"];
 
 <main class="flex-shrink-0">
 
-  <div class="">
+<div class="row align-items-center">
+    <div class="col">
+    <h1 class="mt-5">Result:</h1>
+    </div>
+    <div class="col">
+    <h2 class="mt-5">You made <?php echo $totalPoints ?> of <?php echo $maxPoints ?> points!</h1>
+    </div>
+    <div class="col">
+     
+    </div>
+  </div>
 
-  <h1 class="mt-5">Trivia Quiz</h1>
-    <!-- <p class="lead">Category: <?php // echo $question["topic"]
-?> </p>
-    <p><h6> Question: <?php // echo $question["question_text"]
-?> </h6></p>
+  <div class="col">
+    
+    </div>
+    <div class="col">
+    
+    </div>
+    <div class="col">
+      <img src="images/logo_quiz.svg" class="img-fluid" alt="logo">
+    </div>
+  </div>
 
-<p><h7>Your answer:</h7></p> -->
+  
+    
 
-  <?php echo $totalPoints ?>
+  
            
-<a class="btn btn-info btn-sm" href="javascript:history.back()" role="button">Back</a>
+
 
   </div>
 
@@ -174,7 +168,7 @@ $maxPoints = $_SESSION["quiz"]["questionNum"];
   <div class="container">
 
   
-    <span class="text-muted">Place sticky footer content here.</span>
+    <span class="text-muted">Trivia Quiz <?php echo $quiz["topic"] ?> results</span>
   </div>
 </footer>
 
