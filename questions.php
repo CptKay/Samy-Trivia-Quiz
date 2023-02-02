@@ -166,7 +166,7 @@ $question = fetchQuestionById($id, $dbConn);
 <p><h7>Your answer:</h7></p>
     </div>
 
-  <form action="" method="post">
+  <form action="<?php echo $link; ?>" method="post">
 
   <?php
 
@@ -186,8 +186,8 @@ $correct = $question["correct"];
 
     echo "<div class='form-check form-check-inline'>
   
-    <input class='form-check-input' type='radio' name='inlineRadioOptions' id= '$answerColName' value='$value'>
-    <label class='form-check-label' for='answer-1'>$answerText</label>
+    <input class='form-check-input' type='radio' name='single-choice' id= '$answerColName' value='$value'>
+    <label class='form-check-label' for='single-choice-0'>$answerText</label>
   </div>";
   }
 };
@@ -204,9 +204,9 @@ $correct = $question["correct"];
 
 <div class="hidden">
 
-<input type="hidden" class="form-control" id="questionNum" name="questionNum" value="15">
+<input type="hidden" class="form-control" id="questionNum" name="questionNum" value="<?php echo $quiz["questionNum"]; ?>" >
 
-<input type="hidden" id="questLastInd" name="questLastInd" value="">
+<input type="hidden" id="questLastInd" name="questLastInd" value="<?php echo $currentQuestionIndex; ?>">
 <input type="hidden" id="indexStep" name="indexStep" value="1">
 </div>
 

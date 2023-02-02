@@ -13,8 +13,6 @@ echo "hallo";
 if (isset($_SESSION["quiz"])) $quiz=$_SESSION["quiz"];
 else $quiz = NULL;
 
-prettyPrint($quiz, '$quiz= ');
-
 if(isset($_POST["questLastInd"])) {
   $questLastInd = intval($_POST["questLastInd"]);
 }
@@ -38,6 +36,7 @@ if(str_contains($scriptName, 'index')) {
 else if(str_contains($scriptName, 'questions')) {
    $questionNum = $_POST['questionNum'];
 
+
    if ($questLastInd === -1) {
          $questNum = intval($_POST["questionNum"]);
          $questionIdSequence = fetchQuestionIdSeq(
@@ -57,8 +56,7 @@ else if(str_contains($scriptName, 'questions')) {
          "questionIdSequence" => $questionIdSequence
       );
    }
-
-   prettyPrint($quiz, '$quiz = ');
+   
 
    $indexStep = 1;
    prettyPrint($indexStep, '$indexStep = ');
@@ -68,12 +66,37 @@ else if(str_contains($scriptName, 'questions')) {
 
    $currentQuestionIndex = $questLastInd + $indexStep;
    prettyPrint($currentQuestionIndex, '$currentQuestionIndex = ');
-}
-if (isset($quiz) && $currentQuestionIndex >=0) {
-$_SESSION["quiz"] = $quiz;
-$_SESSION["quiz"]["questLastInd"]=$questLastInd;
-$_SESSION["quiz"]["currentQuestionIndex"]=$currentQuestionIndex;
 
+
+   // $x=intval($questionNum)-1;
+   if ($currentQuestionIndex +1 < $quiz["questionNum"]) {
+      $link = "questions.php";
+   }
+
+   else {
+      $link ="report.php";
+   } 
+}
+
+
+
+
+// report
+
+
+else if (str_contains($scriptName, 'report')) {
+   $currentQuestionIndex = -1;
+
+}
+
+else {
+
+}
+
+if (isset($quiz) && $currentQuestionIndex >=0) {
+   $_SESSION["quiz"] = $quiz;
+   $_SESSION["quiz"]["questLastInd"]=$questLastInd;
+   $_SESSION["quiz"]["currentQuestionIndex"]=$currentQuestionIndex;
 }
 
 if ($questLastInd >= 0) {

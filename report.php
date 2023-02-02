@@ -1,7 +1,7 @@
 <?php
    include "./scripts/php_includes/data-collector.php";
 ?>
-<!doctype html>
+!doctype html>
 <html lang="en" class="h-100">
   <head>
     <meta charset="utf-8">
@@ -97,7 +97,7 @@
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-    <h5 class="mt-0 text-light">Trivia Quiz</h5>
+    <h5 class="mt-0 text-light">Report</h5>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -125,6 +125,20 @@
 <?php  $id = 802;
 
 
+$totalPoints = 0;
+
+foreach ($_SESSION as $name => $value) {
+    if (str_contains($name, 'question-')) {
+        if (isset($value["single-choice"])) {
+            $points = intval($value["single-choice"]);
+            $totalPoints = $totalPoints + $points;
+        }
+    }
+}
+
+$maxPoints = $_SESSION["quiz"]["questionNum"];
+
+
 
 // $question = fetchQuestionById($id, $dbConn);
 
@@ -147,68 +161,7 @@
 
 <p><h7>Your answer:</h7></p> -->
 
-  <form id="quiz" action="questions.php" method="post">
-
-  <select class="form-select" aria-label="Select category" name="topic">
-  <option selected>Select category</option>
-  <option value="gen-knowledge">General Knowledge</option>
-  <option value="technology">Technology</option>
-  <option value="astronautics">Astronautics</option>
-  <option value="science">Science</option>
-  <option value="informatics">Informatics</option>
-  <option value="ai">Artificial Intelligence</option>
-  <option value="geography">Geography</option>
-  <option value="animals">Animals</option>
-  <option value="sports">Sports</option>
-  <option value="music">music</option>
-  <option value="movies">Movies</option>
-  <option value="ch-norris">Chuck norris</option>
-  <option value="d-n-d">Dungeons and Dragons</option>  
-</select>
-
-  <?php /*
-
-$correct = $question["correct"];
-
-  for ($a = 1; $a <= 5; $a++) {
-
-    $answerColName = "answer-" . $a;
-
-
-    
-
-    if(isset($question[$answerColName])&&$question[$answerColName] !== ''){
-      $answerText = $question[$answerColName];
-    if ($correct === $answerColName) $value = 1;
-    else $value = 0;
-
-    echo "<div class='form-check form-check-inline'>
-  
-    <input class='form-check-input' type='radio' name='inlineRadioOptions' id= '$answerColName' value='$value'>
-    <label class='form-check-label' for='answer-1'>$answerText</label>
-  </div>";
-  }
-};
-
-    
-
-    
-   */ ?> 
-  
-    
-<!-- Anzahl Fragen-->
-<div>
-<label style="margin-top:20px;" for="questionNum" class="form-label"> Number of questions</label>
-<input style="width:100px;" type="number" class="form-control" id="questionNum" name="questionNum" min="5" max="40" value="10">
-
-<input type="hidden" id="questLastInd" name="questLastInd" value="-1">
-<input type="hidden" id="indexStep" name="indexStep" value="1">
-</div>
-</div>
-
-<input class="btn btn-info" type="submit" value="Start">
-
-</form>
+  <?php echo $totalPoints ?>
            
 <a class="btn btn-info btn-sm" href="javascript:history.back()" role="button">Back</a>
 
